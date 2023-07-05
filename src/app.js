@@ -10,5 +10,6 @@ app.use(cookieParser())
 
 app.use('/api', authRoutes)
 app.use('/api', tasksRoutes)
+app.use((req, res) => res.sendStatus(404))
 
 export default app
