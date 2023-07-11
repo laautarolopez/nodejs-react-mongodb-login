@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 
 function RegisterPage() {
     const {register, handleSubmit, formState: {errors}} = useForm()
-    const {signUp, isAuthenticated} = useAuth()
+    const {signUp, isAuthenticated, errors: registerErrors} = useAuth()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -18,6 +18,9 @@ function RegisterPage() {
 
     return (
         <div>
+            {registerErrors.map((error, i) => (
+                <div key={i}>{error.message}</div>
+            ))}
             <form onSubmit={onSubmit}>
                 <input 
                     type='text'
@@ -34,7 +37,7 @@ function RegisterPage() {
                 <input 
                     type='password' 
                     placeholder='Password'
-                    {...register('password', {required: true, minLength: 6})} 
+                    {...register('password', {required: true})} 
                 />
                 {errors.password && <p>Password is required</p>}
                 <button type='submit'>Register</button>
