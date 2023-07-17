@@ -1,11 +1,30 @@
-import { useAuth } from "../context/AuthContext.js"
+import { useEffect } from "react"
+import { useTasks } from "../context/TasksContext.js"
 
 function TasksPage() {
-  const {user} = useAuth()
+    const {getTasks, tasks, loading} = useTasks()
 
-  return (
-    <div>TasksPage</div>
-  )
+    useEffect(() => {
+        getTasks()
+    }, [])
+
+    if(loading) return;
+
+    return (
+        <div className="container tasks-page">
+            <div className="row">
+                {tasks.length === 0
+                    ? <h1>No tasks</h1>
+                    : tasks.map(task => (
+                        <div key={task._id}>
+                            {task.title}
+                            {task.description}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    )
 }
 
 export default TasksPage

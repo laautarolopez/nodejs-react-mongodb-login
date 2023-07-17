@@ -75,10 +75,16 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const logOut = () => {
+        Cookies.remove('token')
+        setIsAuthenticated(false)
+        setUser(null)
+    }
+
     const clearErrors = () => setErrors([])
 
     return(
-        <AuthContext.Provider value={{signUp, signIn, user, isAuthenticated, errors, clearErrors, loading}}>
+        <AuthContext.Provider value={{signUp, signIn, user, isAuthenticated, errors, clearErrors, loading, logOut}}>
             {children}
         </AuthContext.Provider>
     )
