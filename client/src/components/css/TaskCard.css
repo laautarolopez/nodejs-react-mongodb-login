@@ -1,0 +1,44 @@
+.taskcard {
+    padding: 30px 10px;
+    text-align: center;
+    background-color: rgb(231, 229, 229);
+    border-radius: 15px;
+}
+
+.taskcard p {
+    margin: 0;
+}
+
+.taskcard-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.taskcard-buttons button,
+.taskcard-buttons a {
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.taskcard-buttons a {
+    color: white;
+    background-color: blue;
+    text-decoration: none;
+}
+
+.taskcard-buttons a:hover {
+    background-color: rgb(7, 7, 201);
+}
+
+.taskcard-buttons button:nth-child(2) {
+    background-color: red;
+}
+
+.taskcard-buttons button:nth-child(2):hover {
+    background-color: rgb(163, 6, 6);
+}

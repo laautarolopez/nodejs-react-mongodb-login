@@ -16,7 +16,6 @@ export const TaskProvider = ({children}) => {
 
     const createTask = async (task) => {
         const res = await createTaskRequest(task)
-        console.log(res)
     }
 
     const getTasks = async () => {
@@ -29,8 +28,28 @@ export const TaskProvider = ({children}) => {
         }
     }
 
+    const updateTask = async (task) => {
+        try {
+            const res = updateTaskRequest(task)
+        } catch(error) {
+
+        }
+    }
+
+    const deleteTask = async (id) => {
+        try {
+            const res = await deleteTaskRequest(id)
+            if(res.status === 204) {
+                const tasksUpdated = tasks.filter(task => task._id != id)
+                setTasks(tasksUpdated)
+            }
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
     return(
-        <TaskContext.Provider value={{tasks, createTask, getTasks, loading}}>
+        <TaskContext.Provider value={{tasks, createTask, getTasks, updateTask, deleteTask, loading}}>
             {children}
         </TaskContext.Provider>
     )
